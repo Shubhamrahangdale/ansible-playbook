@@ -1,0 +1,21 @@
+---
+- name: Install nginx and start nginx
+  hosts: prd
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Deploy the web page
+      copy:
+        src: index.html
+        dest: /var/www/html      
+    
+   
